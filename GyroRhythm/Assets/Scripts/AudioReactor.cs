@@ -1,8 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.Audio;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
+using Random = UnityEngine.Random;
 
 public class AudioReactor : MonoBehaviour
 {
@@ -10,23 +14,51 @@ public class AudioReactor : MonoBehaviour
     public WallPuller wp;
     public AudioSource music;
     public AudioSource ghostAudio;
-    public float[] samples = new float[128];
+    private float[] samples = new float[64];
+    private float[] realtimeSamples = new float[64];
+    private Vignette _vignette;
+
+    public Volume vol;
+    public Action<int, float> sampleReceived;
+    public float threshold;
 
     private void Start()
     {
         ghostAudio.Play();
-        music.PlayDelayed(1);
+        music.PlayDelayed(2);
+
+        GetPostProcessValues(vol);
+        
+    }
+
+    private void GetPostProcessValues(Volume vol)
+    {
+        VolumeProfile volumeProfile = vol.profile;
+        if (!volumeProfile) throw new System.NullReferenceException(nameof(UnityEngine.Rendering.VolumeProfile));
+
+        volumeProfile.TryGet(out _vignette);
     }
 
     private void Update()
     {
         ghostAudio.GetSpectrumData(samples, 0, FFTWindow.BlackmanHarris);
-        for (int i = 0; i < 128; i++)
+        music.GetSpectrumData(realtimeSamples, 0, FFTWindow.BlackmanHarris);
+
+        for (int i = 0; i < 64; i++)
         {
-            if(samples[i]*1.5 > 1)
+            if (samples[i] > threshold)
             {
                 wp.GenerateWall(0);
             }
         }
+        for (int i = 0; i < 64; i++)
+        {
+            if (realtimeSamples[i] > threshold)
+            {
+                _vignette.color.value = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
+            }
+            sampleReceived.Invoke(i, realtimeSamples[i]);
+        }
+
     }
 }

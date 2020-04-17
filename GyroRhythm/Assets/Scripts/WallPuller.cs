@@ -21,7 +21,7 @@ public class WallPuller : MonoBehaviour
         //{
             int nextWallNumber = UnityEngine.Random.Range(0, 3);
             GameObject wall = Instantiate(prefabs[nextWallNumber]);
-            wall.transform.position = Vector3.forward * 20; 
+            wall.transform.position = Vector3.forward * 40; 
             StartCoroutine(PullWall(wall));
 
         nextWall = false;
