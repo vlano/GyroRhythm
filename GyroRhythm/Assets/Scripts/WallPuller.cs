@@ -19,7 +19,7 @@ public class WallPuller : MonoBehaviour
 
         //for (int i = 0; i < 60; i++)
         //{
-            int nextWallNumber = UnityEngine.Random.Range(0, 3);
+            int nextWallNumber = UnityEngine.Random.Range(0, 4);
             GameObject wall = Instantiate(prefabs[nextWallNumber]);
             wall.transform.position = Vector3.forward * 40; 
             StartCoroutine(PullWall(wall));
@@ -32,7 +32,7 @@ public class WallPuller : MonoBehaviour
 
     private IEnumerator PullWall(GameObject gameObject)
     {
-        while(gameObject.transform.position.z > 0)
+        while(gameObject.transform.position.z > -1)
         {
             gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z-0.4f);
             yield return new WaitForFixedUpdate();

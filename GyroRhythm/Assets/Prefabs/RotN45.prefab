@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 871473321843624098}
   - component: {fileID: 8405937296361689988}
   - component: {fileID: 6977807378132750935}
+  - component: {fileID: 6206053797022563126}
+  - component: {fileID: 1724508578842647416}
   m_Layer: 0
   m_Name: RotN45
   m_TagString: Untagged
@@ -79,3 +81,29 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &6206053797022563126
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7299913763926810642}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -7648401518628874839, guid: 52077d6be8b38cb4a8a34c070c0ac17d, type: 3}
+--- !u!114 &1724508578842647416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7299913763926810642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ede1468984b42184783c0d4ce77ee72f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
