@@ -7,6 +7,10 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [SerializeField]
+    private AudioReactor _audioReactor;
+    [SerializeField]
+    private GameObject _menu;
+    [SerializeField]
     private TMP_Text _scoreDisplay;
     [SerializeField]
     private TMP_Text _multiplierDisplay;
@@ -46,6 +50,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private PlayerController _player;
 
+    private bool _isPaused;
+
     private void Awake()
     {
         if (Instance == null)
@@ -55,6 +61,36 @@ public class GameManager : MonoBehaviour
     {
         _player.collosionDetected += WallFailed;
         _player.obsticlePassed += WallCleared;
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            PauseResume();
+        }
+    }
+
+    public void PauseResume()
+    {
+        if (!_isPaused)
+        {
+            if (!_audioReactor.IsDelayedAudioStarted)
+                return;
+
+            Time.timeScale = 0;
+            _menu.SetActive(true);
+            _isPaused = true;
+            _audioReactor.PauseAudio();
+        }
+        else
+        {
+            _menu.SetActive(false);
+            Time.timeScale = 1;
+            _audioReactor.ResumeAudio();
+            _isPaused = false;
+        }
+
     }
 
     public void WallCleared()
@@ -83,5 +119,10 @@ public class GameManager : MonoBehaviour
             text.transform.localScale = new Vector2(text.transform.localScale.x, text.transform.localScale.y) * 0.99f;
             yield return new WaitForEndOfFrame();
         }
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
     }
 }

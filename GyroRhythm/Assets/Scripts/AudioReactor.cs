@@ -10,6 +10,8 @@ using Random = UnityEngine.Random;
 
 public class AudioReactor : MonoBehaviour
 {
+    [SerializeField]
+    private AudioClip _audioClip;
     public AudioMixer mixer;
     public WallPuller wp;
     public AudioSource music;
@@ -22,13 +24,27 @@ public class AudioReactor : MonoBehaviour
     public Action<int, float> sampleReceived;
     public float threshold;
 
+    internal bool IsDelayedAudioStarted;
+
+    private void Awake()
+    {
+        ghostAudio.clip = _audioClip;
+        music.clip = _audioClip;
+    }
     private void Start()
     {
         ghostAudio.Play();
         music.PlayDelayed(2);
+        StartCoroutine(WaitForDealy(2));
 
         GetPostProcessValues(vol);
         
+    }
+
+    private IEnumerator WaitForDealy(int delay)
+    {
+        yield return new WaitForSecondsRealtime(delay);
+        IsDelayedAudioStarted = true;
     }
 
     private void GetPostProcessValues(Volume vol)
@@ -60,5 +76,16 @@ public class AudioReactor : MonoBehaviour
             sampleReceived.Invoke(i, realtimeSamples[i]);
         }
 
+    }
+
+    internal void PauseAudio()
+    {
+        ghostAudio.Pause();
+        music.Pause();
+    }
+    internal void ResumeAudio()
+    {
+        ghostAudio.Play();
+        music.Play();
     }
 }
