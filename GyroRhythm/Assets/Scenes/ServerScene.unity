@@ -172,7 +172,7 @@ MonoBehaviour:
   music: {fileID: 9734035}
   ghostAudio: {fileID: 9734034}
   vol: {fileID: 1983403956}
-  threshold: 0.7
+  threshold: 0.75
 --- !u!82 &9734034
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1917,6 +1917,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   screenSide: 1
+  _heightMultiplier: 3
   prefab: {fileID: 7303462280478443675, guid: 8946b2f5f5e719e448afe2b6c60e1123, type: 3}
   audioReactor: {fileID: 9734033}
 --- !u!4 &1543255299
@@ -2559,6 +2560,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   screenSide: 0
+  _heightMultiplier: 3
   prefab: {fileID: 7303462280478443675, guid: 8946b2f5f5e719e448afe2b6c60e1123, type: 3}
   audioReactor: {fileID: 9734033}
 --- !u!4 &1924310395

@@ -12,6 +12,8 @@ public class AudioVisualizer : MonoBehaviour
     private GameObject[] _objects = new GameObject[64];
     [SerializeField]
     private ScreenSide screenSide;
+    [SerializeField]
+    private float _heightMultiplier;
 
     public GameObject prefab;
     public AudioReactor audioReactor;
@@ -38,7 +40,7 @@ public class AudioVisualizer : MonoBehaviour
 
     internal void SetSize(int index, float height)
     {
-        float multiplier = 10;
+        float multiplier = _heightMultiplier;
         if (index > 0)
         { multiplier *= index;
                 }

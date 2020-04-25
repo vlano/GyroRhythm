@@ -57,8 +57,8 @@ public class AudioReactor : MonoBehaviour
 
     private void Update()
     {
-        ghostAudio.GetSpectrumData(samples, 0, FFTWindow.BlackmanHarris);
-        music.GetSpectrumData(realtimeSamples, 0, FFTWindow.BlackmanHarris);
+        ghostAudio.GetSpectrumData(samples, 0, FFTWindow.Rectangular);
+        music.GetSpectrumData(realtimeSamples, 0, FFTWindow.Rectangular);
 
         for (int i = 0; i < 64; i++)
         {
