@@ -168,7 +168,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _audioClip: {fileID: 8300000, guid: f339eacb169dc084da8185e1da47cf4f, type: 3}
   mixer: {fileID: 24100000, guid: 3b4d9b43699b8dd428c3cd720184161e, type: 2}
-  wp: {fileID: 534669907}
+  wp: {fileID: 1154813438}
   music: {fileID: 9734035}
   ghostAudio: {fileID: 9734034}
   vol: {fileID: 1983403956}
@@ -1013,7 +1013,6 @@ GameObject:
   - component: {fileID: 534669904}
   - component: {fileID: 534669903}
   - component: {fileID: 534669906}
-  - component: {fileID: 534669907}
   - component: {fileID: 534669908}
   - component: {fileID: 534669909}
   m_Layer: 0
@@ -1102,23 +1101,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _controllableGameObject: {fileID: 1519306553}
   _ipText: {fileID: 609831905}
---- !u!114 &534669907
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534669902}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b35c3e27aeb8c82419132dc8012e5261, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefabs:
-  - {fileID: 4106893142848599115, guid: 51240d00b01efd24e9fe7445b0dd42e4, type: 3}
-  - {fileID: 7299913763926810642, guid: fbee90cc50ab72949929b93d6b8b150f, type: 3}
-  - {fileID: 8854484535437162933, guid: 8959f7325c7054a4bb1481aaf9b0093e, type: 3}
-  - {fileID: 9108419390760112656, guid: ca4ec91febbb6c54cac7958b485755d2, type: 3}
 --- !u!114 &534669908
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1163,6 +1145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _audioReactor: {fileID: 9734033}
+  _wallPuller: {fileID: 1154813438}
   _menu: {fileID: 250830158}
   _scoreDisplay: {fileID: 1816054483}
   _multiplierDisplay: {fileID: 686394706}
@@ -1635,6 +1618,54 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 747996335}
   m_CullTransparentMesh: 0
+--- !u!1 &1154813437
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1154813439}
+  - component: {fileID: 1154813438}
+  m_Layer: 0
+  m_Name: WallGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1154813438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1154813437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b35c3e27aeb8c82419132dc8012e5261, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabs:
+  - {fileID: 4106893142848599115, guid: 51240d00b01efd24e9fe7445b0dd42e4, type: 3}
+  - {fileID: 7299913763926810642, guid: fbee90cc50ab72949929b93d6b8b150f, type: 3}
+  - {fileID: 8854484535437162933, guid: 8959f7325c7054a4bb1481aaf9b0093e, type: 3}
+  - {fileID: 9108419390760112656, guid: ca4ec91febbb6c54cac7958b485755d2, type: 3}
+--- !u!4 &1154813439
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1154813437}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1160977754
 GameObject:
   m_ObjectHideFlags: 0
@@ -2015,7 +2046,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1797223935}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 534669909}
+        m_MethodName: Restart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1797223935
 MonoBehaviour:
   m_ObjectHideFlags: 0

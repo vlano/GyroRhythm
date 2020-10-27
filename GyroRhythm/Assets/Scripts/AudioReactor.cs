@@ -31,7 +31,7 @@ public class AudioReactor : MonoBehaviour
         ghostAudio.clip = _audioClip;
         music.clip = _audioClip;
     }
-    private void Start()
+    internal void StartMusic()
     {
         ghostAudio.Play();
         music.PlayDelayed(2);

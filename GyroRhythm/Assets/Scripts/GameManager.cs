@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private AudioReactor _audioReactor;
     [SerializeField]
+    private WallPuller _wallPuller;
+    [SerializeField]
     private GameObject _menu;
     [SerializeField]
     private TMP_Text _scoreDisplay;
@@ -61,6 +63,7 @@ public class GameManager : MonoBehaviour
     {
         _player.collosionDetected += WallFailed;
         _player.obsticlePassed += WallCleared;
+        _audioReactor.StartMusic();
     }
 
     private void Update()
@@ -121,6 +124,18 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void Restart()
+    {
+        _audioReactor.StartMusic();
+        _wallPuller.StopAllCoroutines();
+        foreach (Transform tr in _wallPuller.transform)
+        {
+            Destroy(tr.gameObject);
+        }
+        PauseResume();
+        currentScore = 0;
+        comboMultiplier = 0;
+    }
     public void Quit()
     {
         Application.Quit();
